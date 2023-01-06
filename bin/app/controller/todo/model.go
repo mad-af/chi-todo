@@ -17,7 +17,7 @@ type (
 		DeletedAt *time.Time `json:"-"`
 	}
 
-	Todo struct {
+	Todos struct {
 		ID              int       `json:"id"`
 		ActivityGroupID int       `json:"activity_group_id"`
 		Title           string    `json:"title"`
@@ -29,7 +29,7 @@ type (
 	}
 )
 
-func (a Todo) Bind(r *http.Request) error {
+func (a Todos) Bind(r *http.Request) error {
 
 	switch r.Method {
 	case "POST":

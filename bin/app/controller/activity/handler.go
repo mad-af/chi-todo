@@ -53,7 +53,7 @@ func (s *Service) GetDetail(w http.ResponseWriter, r *http.Request) {
 func (s *Service) Create(w http.ResponseWriter, r *http.Request) {
 	var reply = &res.Response{Code: http.StatusCreated, Status: "Success", Message: "Success"}
 
-	var data = &Activity{}
+	var data = &Activities{}
 	if err := render.Bind(r, data); err != nil {
 		res.ReplyError(http.StatusBadRequest, "Bad Request", err.Error(), reply)
 	} else {
@@ -68,7 +68,7 @@ func (s *Service) Update(w http.ResponseWriter, r *http.Request) {
 	var reply = &res.Response{Code: http.StatusOK, Status: "Success", Message: "Success"}
 
 	var param = chi.URLParam(r, "id")
-	var data = &Activity{}
+	var data = &Activities{}
 	if id, err := strconv.Atoi(param); err != nil {
 		res.ReplyError(http.StatusNotFound, "Not Found", fmt.Sprintf("Activity with ID %s Not Found", param), reply)
 	} else if err := render.Bind(r, data); err != nil {

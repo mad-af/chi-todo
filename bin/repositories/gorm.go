@@ -19,6 +19,10 @@ func Init(dialector gorm.Dialector) *gorm.DB {
 		panic("Failed to connect database")
 	}
 
+	if err := db.AutoMigrate(ModelTables...); err != nil {
+		panic("Migration: " + err.Error())
+	}
+
 	sqlDB, err := db.DB()
 	if err != nil {
 		panic("Failed to create pool connection database")

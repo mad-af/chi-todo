@@ -8,17 +8,17 @@ import (
 
 // TABLE
 type (
-	Activity struct {
-		ID        int       `json:"id"`
+	Activities struct {
+		ID        int        `json:"id"`
 		Email     *string    `json:"email"`
-		Title     string    `json:"title"`
-		CreatedAt time.Time `json:"created_at"`
-		UpdatedAt time.Time `json:"updated_at"`
+		Title     string     `json:"title"`
+		CreatedAt time.Time  `json:"created_at"`
+		UpdatedAt time.Time  `json:"updated_at"`
 		DeletedAt *time.Time `json:"-"`
 	}
 )
 
-func (a Activity) Bind(r *http.Request) error {
+func (a Activities) Bind(r *http.Request) error {
 
 	switch r.Method {
 	case "POST":
