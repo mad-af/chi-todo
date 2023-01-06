@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    networks:
+      - chi_network
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1
+  chi-todo:
+    container_name: chi-todo
+    image: chi-todo:1.0
+    ports:
+      - 9000:9000
+    depends_on:
+      - mysql
+    env_file:
+      - .env
+    networks:
+      - chi_network
+
+networks:
+  chi_network:
+    name: chi_network
