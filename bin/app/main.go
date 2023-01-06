@@ -11,7 +11,6 @@ import (
 )
 
 func main() {
-
 	var s = &handler.Server{Chi: chi.NewRouter()}
 	var r = s.Chi
 	r.Use(middleware.Logger)
@@ -19,7 +18,10 @@ func main() {
 	s.Routes()
 
 	var colorGreen, colorReset = "\033[32m", "\033[0m"
-	var port string = fmt.Sprintf("%s:%s", c.Env.Host, c.Env.Port)
-	fmt.Printf("⇨ http server started on %s%s%s\n", colorGreen, port, colorReset)
-	http.ListenAndServe(port, r)
+	var url string = c.Env.ApiUrl
+	if url == "" {
+		url = fmt.Sprintf("%s:%s", c.Env.Host, c.Env.Port)
+	}
+	fmt.Printf("⇨ http server started on %s%s%s\n", colorGreen, url, colorReset)
+	http.ListenAndServe(url, r)
 }

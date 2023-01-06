@@ -10,6 +10,6 @@ RUN go mod download \
  && go build -tags musl -o main ./bin/app
 
 # Expose port
-EXPOSE 9000
+EXPOSE 3030
 
 CMD ["go", "run", "./bin/app/main.go"]
