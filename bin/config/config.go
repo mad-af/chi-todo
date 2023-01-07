@@ -14,7 +14,7 @@ var Env struct {
 	Host   string `json:"HOST"`
 	Port   string `json:"PORT"`
 	// MYSQL
-	MysqlUsername string `json:"MYSQL_USERNAME"`
+	MysqlUsername string `json:"MYSQL_USER"`
 	MysqlPassword string `json:"MYSQL_PASSWORD"`
 	MysqlHost     string `json:"MYSQL_HOST"`
 	MysqlPort     string `json:"MYSQL_PORT"`
@@ -27,7 +27,7 @@ func init() {
 		Env.Host = os.Getenv("HOST")
 		Env.Port = os.Getenv("PORT")
 
-		Env.MysqlUsername = os.Getenv("MYSQL_USERNAME")
+		Env.MysqlUsername = os.Getenv("MYSQL_USER")
 		Env.MysqlPassword = os.Getenv("MYSQL_PASSWORD")
 		Env.MysqlHost = os.Getenv("MYSQL_HOST")
 		Env.MysqlPort = os.Getenv("MYSQL_PORT")
