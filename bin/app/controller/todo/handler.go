@@ -28,7 +28,7 @@ func Init(s *Service) {
 }
 
 func (s *Service) GetList(w http.ResponseWriter, r *http.Request) {
-	var reply = &res.Response{Code: http.StatusOK, Status: "Success", Message: "Success", Data: make([]Activity, 0)}
+	var reply = &res.Response{Code: http.StatusOK, Status: "Success", Message: "Success", Data: make([]Todos, 0)}
 
 	var query = r.URL.Query().Get("activity_group_id") 
 	var activityGroupID, err = strconv.Atoi(query)
@@ -77,7 +77,7 @@ func (s *Service) Update(w http.ResponseWriter, r *http.Request) {
 	var param = chi.URLParam(r, "id")
 	var data = &Todos{}
 	if id, err := strconv.Atoi(param); err != nil {
-		res.ReplyError(http.StatusNotFound, "Not Found", fmt.Sprintf("Activity with ID %s Not Found", param), reply)
+		res.ReplyError(http.StatusNotFound, "Not Found", fmt.Sprintf("Todo with ID %s Not Found", param), reply)
 	} else if err := render.Bind(r, data); err != nil {
 		res.ReplyError(http.StatusBadRequest, "Bad Request", err.Error(), reply)
 	} else {
@@ -93,7 +93,7 @@ func (s *Service) Delete(w http.ResponseWriter, r *http.Request) {
 
 	var param = chi.URLParam(r, "id")
 	if id, err := strconv.Atoi(param); err != nil {
-		res.ReplyError(http.StatusNotFound, "Not Found", fmt.Sprintf("Activity with ID %s Not Found", param), reply)
+		res.ReplyError(http.StatusNotFound, "Not Found", fmt.Sprintf("Todo with ID %s Not Found", param), reply)
 	} else {
 		Delete(id, reply)
 	}

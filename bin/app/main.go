@@ -22,6 +22,10 @@ func main() {
 	if url == "" {
 		url = fmt.Sprintf("%s:%s", c.Env.Host, c.Env.Port)
 	}
+	if url == ":" {
+		url += "3030"
+	}
+	fmt.Println(url)
 	fmt.Printf("⇨ http server started on %s%s%s\n", colorGreen, url, colorReset)
 	http.ListenAndServe(url, r)
 }
